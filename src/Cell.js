@@ -1,15 +1,9 @@
 import React from 'react';
 
-class Cell extends React.Component {
-    handleClick(e) {
-        e.target.innerText = 'X';
-    }
-
-    render() {
-        return (
-            <button type="button" className="cell" onClick={this.handleClick.bind(this)}></button>
-        )
-    }
+const Cell = (props) => {
+    return (
+        <button type="button" className="cell" onClick={props.onClick}></button>
+    )
 }
 
 export default Cell;
