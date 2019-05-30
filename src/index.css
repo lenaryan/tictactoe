@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css?family=Anonymous+Pro:700&display=swap');
+
+html, body {
+  height: 100%;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  margin: 0;
+}
+
+button {
+  background: #bada5599;
+  border: 1px solid grey;
+  padding: 10px;
+  height: 120px;
+  width: 120px;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 60px;
+  font-weight: bold;
+  cursor: pointer;
+  -webkit-transition: background 0.3s ease-in-out;
+  transition: background 0.3s ease-in-out;
+}
+
+button:hover, button:focus {
+  background: #bada55;
+  outline: none;
+}
+
+.game .row {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
