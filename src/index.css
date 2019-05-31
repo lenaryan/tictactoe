@@ -8,9 +8,10 @@ body {
   display: grid;
   place-items: center;
   margin: 0;
+  text-align: center;
 }
 
-button {
+.cell {
   background: #bada5599;
   border: 1px solid grey;
   padding: 10px;
@@ -24,13 +25,41 @@ button {
   transition: background 0.3s ease-in-out;
 }
 
-button:hover, button:focus {
+.cell:not(:disabled):hover, .cell:not(:disabled):focus {
   background: #bada55;
   outline: none;
 }
 
-.game .row {
+.row {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.reset {
+  margin: 40px 0 0;
+  background: white;
+  border: 2px solid grey;
+  padding: 5px 30px;
+  text-transform: uppercase;
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 20px;
+  color: grey;
+  text-shadow: 0 0 1px;
+  -webkit-transition: background 0.3s ease-in-out;
+  transition: background 0.3s ease-in-out;
+}
+
+.reset:hover, .reset:focus {
+  background: #bada55;
+  outline: none;
+  cursor: pointer;
+}
+
+.result {
+  font-family: 'Anonymous Pro', monospace;
+  font-size: 30px;
+  text-transform: uppercase;
+  color: #555;
+  visibility: hidden;
 }

@@ -1,11 +1,13 @@
 import React from 'react';
 import Cell from './Cell';
+import Result from './Result';
 
 class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      moveNum: 0
+      moveNum: 0,
+      winner: ''
     }
     this.handleClick = this.handleClick.bind(this);
   }
@@ -41,8 +43,11 @@ class App extends React.Component {
 
     winCombos.forEach(combo => {
       if (orderValue[combo[0]] !== '' && orderValue[combo[0]] === orderValue[combo[1]] && orderValue[combo[0]] === orderValue[combo[2]]) {
-        console.log(orderValue[combo[0]] + ' wins');
+        this.setState({
+          winner: orderValue[combo[0]]
+        })
         cells.forEach(cell => cell.setAttribute('disabled', 'disabled'));
+        document.querySelector('.result').style.visibility = 'initial';
       }
     })
 
@@ -69,24 +74,40 @@ class App extends React.Component {
     }
   }
 
+  handleResetClick(e) {
+    let cells = document.querySelectorAll('.cell');
+    cells.forEach(cell => {
+      cell.removeAttribute('disabled');
+      cell.innerText = ''
+    });
+    document.querySelector('.result').style.visibility = 'hidden';
+    this.setState({
+      moveNum: 0,
+      winner: ''
+    })
+  }
+
   render() {
     return (
       <div className="game">
-        <div className="row">
-          <Cell order='1' onClick={this.handleClick} />
-          <Cell order='2' onClick={this.handleClick} />
-          <Cell order='3' onClick={this.handleClick} />
+        <div className="board">
+          <div className="row">
+            <Cell order='1' onClick={this.handleClick} />
+            <Cell order='2' onClick={this.handleClick} />
+            <Cell order='3' onClick={this.handleClick} />
+          </div>
+          <div className="row">
+            <Cell order='4' onClick={this.handleClick} />
+            <Cell order='5' onClick={this.handleClick} />
+            <Cell order='6' onClick={this.handleClick} />
+          </div>
+          <div className="row">
+            <Cell order='7' onClick={this.handleClick} />
+            <Cell order='8' onClick={this.handleClick} />
+            <Cell order='9' onClick={this.handleClick} />
+          </div>
         </div>
-        <div className="row">
-          <Cell order='4' onClick={this.handleClick} />
-          <Cell order='5' onClick={this.handleClick} />
-          <Cell order='6' onClick={this.handleClick} />
-        </div>
-        <div className="row">
-          <Cell order='7' onClick={this.handleClick} />
-          <Cell order='8' onClick={this.handleClick} />
-          <Cell order='9' onClick={this.handleClick} />
-        </div>
+        <Result winner={this.state.winner} onClick={this.handleResetClick.bind(this)} />
       </div>
     )
   }
